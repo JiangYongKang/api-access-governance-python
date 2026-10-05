@@ -37,7 +37,7 @@ def test_insufficient_scope_rejected_and_not_counted(stack):
 
 
 def test_revoked_credential_rejected_immediately(stack):
-    svc, storage = stack
+    svc, _storage = stack
     token = svc.issue_credential("t1", {"read"}, ttl_seconds=100.0,
                                  request_id="req-issue", now=0.0)
     key_id = token.split(".")[1]
