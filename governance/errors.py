@@ -14,7 +14,9 @@ class DecisionReason(enum.Enum):
     CREDENTIAL_REVOKED = "credential_revoked"          # 已撤销
     CREDENTIAL_EXPIRED = "credential_expired"          # 已过期
     INSUFFICIENT_SCOPE = "insufficient_scope"          # 权限范围不足
-    QUOTA_EXCEEDED = "quota_exceeded"                  # 超出配额
+    QUOTA_EXCEEDED = "quota_exceeded"                  # 超出总量配额
+    QUOTA_WINDOW_EXCEEDED = "quota_window_exceeded"    # 超出时间窗口滚动配额
+    QUOTA_UNAVAILABLE = "quota_unavailable"            # 配额策略/记账链路故障，拒绝放行
     AUDIT_FAILURE = "audit_failure"                    # 审计写入失败，不放行
 
 
@@ -24,3 +26,7 @@ class GovernanceError(Exception):
 
 class AuditWriteError(GovernanceError):
     """审计流水写入失败。授权链路必须将其视为拒绝，不得静默放行。"""
+
+
+class QuotaError(GovernanceError):
+    """配额策略读取或记账链路异常。授权链路必须将其视为拒绝，不得静默放行。"""

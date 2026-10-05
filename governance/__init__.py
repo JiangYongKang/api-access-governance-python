@@ -1,13 +1,24 @@
 """多租户访问控制与配额治理。"""
 
-from .errors import DecisionReason, GovernanceError, AuditWriteError
-from .models import Credential, Decision, AuditRecord
+from .errors import AuditWriteError, DecisionReason, GovernanceError, QuotaError
+from .models import (
+    AuditRecord,
+    Credential,
+    Decision,
+    QuotaAcquireResult,
+    QuotaPolicy,
+    QuotaSnapshot,
+)
 
 __all__ = [
     "DecisionReason",
     "GovernanceError",
     "AuditWriteError",
+    "QuotaError",
     "Credential",
     "Decision",
     "AuditRecord",
+    "QuotaPolicy",
+    "QuotaSnapshot",
+    "QuotaAcquireResult",
 ]
